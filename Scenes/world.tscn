@@ -1,12 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4dbdttajqbhe"]
+[gd_scene load_steps=5 format=3 uid="uid://c4dbdttajqbhe"]
 
 [ext_resource type="PackedScene" uid="uid://drjlui1lqduat" path="res://Scenes/Player.tscn" id="1_pgkqv"]
+[ext_resource type="Script" path="res://Scenes/Enemy.gd" id="2_8eyt0"]
+[ext_resource type="Texture2D" uid="uid://dhg44avw2b2q" path="res://icon.svg" id="3_xkif3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xy8vy"]
 
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_pgkqv")]
 z_index = 1
 position = Vector2(665, 335)
+
+[node name="Enemy" type="CharacterBody2D" parent="."]
+z_index = 1
+script = ExtResource("2_8eyt0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+texture = ExtResource("3_xkif3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+shape = SubResource("RectangleShape2D_xy8vy")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -451.0
@@ -51,3 +65,5 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Room 2"
+
+[editable path="Player"]
