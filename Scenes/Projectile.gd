@@ -8,4 +8,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if(get_contact_count()>0):
+		var myContacts = get_colliding_bodies()
+		for contact in myContacts:
+			if(contact.is_in_group("enemy")):
+				print("hit")
+				contact.get_parent().remove_child(contact)
+
+#func _input(event):
